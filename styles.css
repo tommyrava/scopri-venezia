@@ -1,26 +1,62 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#map-container {
+  flex: 1;
+  position: relative;
 }
 
 #map {
-    flex-grow: 1;
-    width: 100%;
-    height: 80%;
+  height: 100%;
+  width: 100%;
 }
 
-.tabs {
-    display: flex;
-    justify-content: space-around;
-    background-color: #333;
-    padding: 10px;
-    color: white;
+#tabs {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #f7f7f7; /* Colore di sfondo chiaro (come iOS) */
+  border-bottom: 2px solid #dcdcdc; /* Linea sottile sotto i tab */
 }
 
-.tabs div {
-    cursor: pointer;
+#tabs button {
+  background: none; /* Nessun sfondo */
+  color: #007aff; /* Colore blu Apple per il testo */
+  font-size: 16px; /* Dimensione del testo */
+  padding: 10px 20px; /* Spaziatura del pulsante */
+  border: none; /* Nessun bordo */
+  border-radius: 10px 10px 0 0; /* Bordo arrotondato in alto */
+  cursor: pointer; /* Mano al passaggio sopra */
+  transition: background-color 0.3s, transform 0.3s; /* Animazione per i cambiamenti */
+}
+
+#tabs button:hover {
+  background-color: #e1e1e1; /* Colore di sfondo quando il mouse passa sopra */
+}
+
+#tabs button:active {
+  background-color: #d1d1d6; /* Colore di sfondo quando il tab è premuto */
+}
+
+#tabs button.selected {
+  color: white; /* Colore del testo del tab selezionato */
+  background-color: #007aff; /* Colore blu Apple del tab selezionato */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra per dare profondità */
+}
+
+
+#content {
+  padding: 1rem;
+  overflow-y: auto;
+  max-height: 40vh; /* o meno, se preferisci */
 }
