@@ -1,26 +1,164 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+/* Reset base */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  background-color: #f9f9f9;
+  color: #1c1c1e;
+}
+
+/* Layout principale */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Mappa */
+#map-container {
+  flex: 1;
+  position: relative;
 }
 
 #map {
-    flex-grow: 1;
-    width: 100%;
-    height: 80%;
+  height: 100%;
+  width: 100%;
 }
 
-.tabs {
-    display: flex;
-    justify-content: space-around;
-    background-color: #333;
-    padding: 10px;
-    color: white;
+/* Tab stile iOS */
+#tabs {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  background-color: #f2f2f7;
+  border-bottom: 1px solid #c6c6c8;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05) inset;
 }
 
-.tabs div {
-    cursor: pointer;
+#tabs button {
+  background: none;
+  color: #007aff;
+  font-size: 16px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#tabs button:hover {
+  background-color: rgba(0, 122, 255, 0.1);
+}
+
+#tabs button:active {
+  background-color: rgba(0, 122, 255, 0.2);
+}
+
+#tabs button.selected {
+  background-color: #007aff;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 122, 255, 0.2);
+}
+
+/* Contenuto */
+#content {
+  padding: 1rem;
+  overflow-y: auto;
+  max-height: 40vh;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e5ea;
+}
+
+/* Input di ricerca */
+#searchInput {
+  width: calc(100% - 32px);
+  margin: 12px auto;
+  padding: 12px;
+  font-size: 16px;
+  display: block;
+  border: 1px solid #d1d1d6;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  transition: border 0.2s;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: #007aff;
+}
+
+/* Bottone Home */
+#btnHome {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: white;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+#btnHome:hover {
+  transform: scale(1.05);
+}
+
+#btnHome img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Card luogo */
+.luogo {
+  background-color: #fefefe;
+  margin-bottom: 12px;
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.luogo:hover {
+  transform: translateY(-2px);
+}
+
+.luogo h3 {
+  margin: 0 0 6px 0;
+  font-size: 18px;
+  color: #1c1c1e;
+}
+
+.luogo p {
+  margin: 0;
+  font-size: 15px;
+  color: #3a3a3c;
+}
+
+/* Footer */
+footer {
+  padding: 1rem;
+  text-align: center;
+  font-size: 13px;
+  color: #8e8e93;
+  background-color: #f2f2f7;
+}
+
+/* Animazione di fade-in */
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

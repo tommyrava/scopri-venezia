@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scopri Venezia</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scopri Venezia</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 <body>
-    <div id="map"></div>
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
-    <script src="script.js"></script>
+  <div id="app">
+    <div id="map-container">
+      <div id="map">Mappa in caricamento...</div>
+    </div>
+
+    <div id="tabs">
+      <button onclick="filtraPerCategoria('tutti')">Tutti i luoghi</button>
+      <button onclick="filtraPerCategoria('cibo')">🍝 Cibo</button>
+      <button onclick="filtraPerCategoria('musei')">🖼️ Musei</button>
+      <button onclick="filtraPerCategoria('negozi')">🛍️ Negozi</button>
+      <button onclick="showSection('trasporti')">🚤 Trasporti</button>
+    </div>
+
+    <input id="searchInput" placeholder="Cerca per nome o categoria" />
+
+    <div id="content"></div>
+  </div>
+
+  <button id="btnHome" onclick="showSection('home')">
+    <img src="home-icon.png" alt="Home" />
+  </button>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+
+  <footer>
+    <p>Icona del Leone di San Marco creata da Chanut-is-Industries - Flaticon (https://www.flaticon.com/free-icons/venezia)</p>
+  </footer>
 </body>
 </html>
