@@ -2,6 +2,8 @@ function initMap() {
   const venezia = [45.4375, 12.3358];
   const map = L.map("map").setView(venezia, 13);
   window.myMap = map;
+  window.tuttiIMarkers = [];
+
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors',
@@ -17,6 +19,19 @@ function aggiungiMarkerLuoghi() {
     return;
   }
 
+function filtraPerCategoria(categoria) {
+  const map = window.myMap;
+  if (!map || !window.tuttiIMarkers) return;
+  
+  window.tuttiIMarkers.forEach(marker => {
+    if (marker.categoria === categoria) {
+      marker.addTo(map);
+    } else {
+      map.removeLayer(marker);
+    }
+  });
+}  
+
   if (window.markersLayer) {
     map.removeLayer(window.markersLayer);
   }
@@ -24,12 +39,17 @@ function aggiungiMarkerLuoghi() {
   const luoghi = [...cibo, ...musei, ...negozi];
   const layerGroup = L.layerGroup();
 
+  window.tuttiIMarkers = []; // reset
   luoghi.forEach(l => {
     if (l.lat && l.lng) {
       const marker = L.marker([l.lat, l.lng]).bindPopup(`<b>${l.nome}</b><br>${l.descrizione}`);
+      marker.categoria = l.categoria || "generico";
+      marker.nome = l.nome;
       layerGroup.addLayer(marker);
+      window.tuttiIMarkers.push(marker);
     }
   });
+
 
   layerGroup.addTo(map);
   window.markersLayer = layerGroup;
@@ -182,4 +202,22 @@ function showSection(section) {
   content.innerHTML = html;
   setSelectedTab(section); // Imposta il tab selezionato
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("searchInput");
+  if (input) {
+    input.addEventListener("input", function (e) {
+      const val = e.target.value.toLowerCase();
+      window.tuttiIMarkers.forEach(marker => {
+        const match = marker.nome.toLowerCase().includes(val) || marker.categoria.toLowerCase().includes(val);
+        if (match) {
+          marker.addTo(window.myMap);
+        } else {
+          window.myMap.removeLayer(marker);
+        }
+      });
+    });
+  }
+});
+
 

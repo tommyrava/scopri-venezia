@@ -54,9 +54,38 @@ html, body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra per dare profondità */
 }
 
-
 #content {
   padding: 1rem;
   overflow-y: auto;
   max-height: 40vh; /* o meno, se preferisci */
+}
+
+#searchInput {
+  width: calc(100% - 20px);
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 16px;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+#btnHome {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%; /* Tondo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#btnHome img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Tondo */
+  object-fit: cover; /* Adatta l'immagine dentro il cerchio */
 }
