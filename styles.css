@@ -1,22 +1,16 @@
-/* Reset base */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  background-color: #f9f9f9;
-  color: #1c1c1e;
 }
 
-/* Layout principale */
 #app {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
-/* Mappa */
 #map-container {
   flex: 1;
   position: relative;
@@ -27,49 +21,97 @@ html, body {
   width: 100%;
 }
 
-.tabs {
-    display: flex;
-    justify-content: space-around;
-    background-color: #333;
-    padding: 10px;
-    color: white;
+#tabs {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #f7f7f7; /* Colore di sfondo chiaro (come iOS) */
+  border-bottom: 2px solid #dcdcdc; /* Linea sottile sotto i tab */
+  position: relative;
+  z-index: 10; /* Assicura che la barra dei tab sia sopra la mappa */
 }
 
-.tabs div {
-    cursor: pointer;
+#tabs button {
+  background: none; /* Nessun sfondo */
+  color: #007aff; /* Colore blu Apple per il testo */
+  font-size: 16px; /* Dimensione del testo */
+  padding: 10px 20px; /* Spaziatura del pulsante */
+  border: none; /* Nessun bordo */
+  border-radius: 10px 10px 0 0; /* Bordo arrotondato in alto */
+  cursor: pointer; /* Mano al passaggio sopra */
+  transition: background-color 0.3s, transform 0.3s; /* Animazione per i cambiamenti */
 }
 
-.luogo:hover {
-  transform: translateY(-2px);
+#tabs button:hover {
+  background-color: #e1e1e1; /* Colore di sfondo quando il mouse passa sopra */
 }
 
-.luogo h3 {
-  margin: 0 0 6px 0;
-  font-size: 18px;
-  color: #1c1c1e;
+#tabs button:active {
+  background-color: #d1d1d6; /* Colore di sfondo quando il tab è premuto */
 }
 
-.luogo p {
-  margin: 0;
-  font-size: 15px;
-  color: #3a3a3c;
+#tabs button.selected {
+  color: white; /* Colore del testo del tab selezionato */
+  background-color: #007aff; /* Colore blu Apple del tab selezionato */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra per dare profondità */
 }
 
-/* Footer */
-footer {
+#content {
   padding: 1rem;
-  text-align: center;
-  font-size: 13px;
-  color: #8e8e93;
-  background-color: #f2f2f7;
+  overflow-y: auto;
+  max-height: 40vh; /* o meno, se preferisci */
 }
 
-/* Animazione di fade-in */
-.fade-in {
-  animation: fadeIn 0.4s ease-in-out;
+#searchInput {
+  width: calc(100% - 20px);
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 16px;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+#btnHome {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%; /* Tondo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#btnHome img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Tondo */
+  object-fit: cover; /* Adatta l'immagine dentro il cerchio */
+}
+
+/* Media Query per dispositivi mobili */
+@media (max-width: 768px) {
+  #tabs {
+    flex-direction: column; /* Disporre i tab in colonna su schermi più piccoli */
+    align-items: center; /* Centrato orizzontalmente */
+    padding: 20px 0; /* Maggiore spazio attorno ai bottoni */
+  }
+
+  #tabs button {
+    font-size: 14px; /* Ridurre la dimensione del testo */
+    padding: 12px 30px; /* Maggiore spazio per i bottoni */
+    margin-bottom: 10px; /* Distanza tra i bottoni */
+    width: 80%; /* Rendi i bottoni più larghi */
+  }
+
+  #map-container {
+    height: 60%; /* Riduci l'altezza della mappa per lasciare spazio ai tab */
+  }
+
+  #searchInput {
+    width: 90%; /* Rendi la barra di ricerca un po' più larga su schermi piccoli */
+  }
 }
